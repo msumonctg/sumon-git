@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2017 at 10:20 AM
+-- Generation Time: Mar 22, 2017 at 11:24 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -54,7 +54,7 @@ ALTER TABLE `users_table`
 -- AUTO_INCREMENT for table `users_table`
 --
 ALTER TABLE `users_table`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
