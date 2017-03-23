@@ -1,10 +1,9 @@
 <?php 
 session_start();
 
-function __autoload($className)
-{
-	include_once($className.".php");
-}
+spl_autoload_register( function($className) {
+	include_once $className.".php";
+});
 
 $class = new functionHandler();
 

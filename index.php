@@ -14,7 +14,7 @@
         <div class="container">
            
             <header>
-            <?php if(isset($_SESSION["msg"])) echo "<h1 style='color: #cb4335 ;'>".$_SESSION["msg"]."</h1>"; ?>
+            <?php if(isset($_COOKIE["msg"])) {echo "<h1 style='color: #cb4335 ;'>".$_COOKIE["msg"]."</h1>";} ?>
                 <!-- <h1></h1> -->
 				
             </header>

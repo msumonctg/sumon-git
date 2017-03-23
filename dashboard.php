@@ -1,10 +1,11 @@
 <?php 
 session_start();
 
-function __autoload($className)
+spl_autoload_register( function($className)
 {
-	include_once($className.".php");
-}
+	include_once $className.".php";
+});
+
 
 $class = new functionHandler();
 if($class->login_status() == false)

@@ -30,17 +30,18 @@ class functionHandler
 			}
 			else
 			{
-				$_SESSION['msg'] = "Wrong Password";
+				setcookie('msg', 'Wrong Password', time()+5);
 				$this->redirect("index.php");
 			}
 		}
 		else
 		{
-			$_SESSION['msg'] = "Email, Password didn't match";
+			setcookie('msg', "Email, Password didn't match", time()+5);
 			$this->redirect("index.php");
 		}
 	}
 
+	//User registration
 	public function registration($name, $email, $password)
 	{
 		if($this->check_email_availability($email) == true)
@@ -57,16 +58,17 @@ class functionHandler
 			$preparedQuery->bindparam(":now", $now);
 			$preparedQuery->execute();
 			$this->send_email($email, $name, $access_token);
-			$_SESSION['msg'] = "Your account has been created. <br /> Account activation link that has been send to your email.";
+			setcookie('msg', "Your account has been created. <br/> Account activation link has been sent to your email.", time()+5);
 			$this->redirect("index.php#toregister");
 		}
 		else
 		{
-			$_SESSION['msg'] = "This email is used once";
+			setcookie('msg', "This email is used once", time()+5);
 			$this->redirect("index.php#toregister");
 		}
 	}
 
+	//Verification of email using access token
 	public function verify($email, $accessToken)
 	{
 		$sql = "UPDATE users_table SET active = 1 WHERE email = :email AND access_token = :accessToken";
@@ -76,11 +78,12 @@ class functionHandler
 		$preparedQuery->execute();
 		if($preparedQuery->rowCount() > 0) { $this->redirect("dashboard.php");}
 		else {
-			$_SESSION["msg"] = "This verification link has expired";
+			setcookie('msg', "This verification token is not valid", time()+5);
 			$this->redirect("index.php");
 		}
 	}
 
+	//Checking a user is logged in or not
 	public function login_status()
 	{
 		if(isset($_SESSION['logged_in_user_id']))
@@ -90,17 +93,20 @@ class functionHandler
 		else return false;
 	}
 
+	//Ending of a users session
 	public function logout()
 	{
 		session_destroy();
 		$this->redirect("index.php");
 	}
 
+	//Redirect to a given url
 	public function redirect($URL)
 	{
 		header("Location: $URL");
 	}
 
+	//Send mail to the users email for verification purpose
 	public function send_email($email, $user_name, $hash)
 	{
 		//This email funcionality will not work at localhost environment.
@@ -128,6 +134,7 @@ class functionHandler
     	$msg = 'Your account has been made. <br /> Please verify it by clicking the activation link that has been send to your email.';
 	}
 
+	//Checking a email address is used or not
 	public function check_email_availability($email)
 	{
         $sql = "SELECT COUNT('email') as emailPresent FROM users_table WHERE email =  :email";
@@ -139,6 +146,7 @@ class functionHandler
         else return false;
     }
 
+    //Returns the last inserted id of database table
     public function lastInsertedID()
     {
     	$id = $this->conn->lastInsertId();
