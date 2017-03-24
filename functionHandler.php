@@ -124,11 +124,11 @@ class functionHandler
         ------------------------
          
         Please click this link to activate your account:
-        http://www.examle.com/verify.php?email='.$email.'&accessToken='.$hash.'
+        http://www.examle.com/index.php?email='.$email.'&accessToken='.$hash.'
          
         '; // Our message above including the link
                              
-        $headers = 'From:noreply@example.com' . "\r\n"; // Set from headers
+        $headers = 'From:noreply@example.com' . "\r\n"; // Set your email address
         mail($to, $subject, $message, $headers); // Send our email
         
     	$msg = 'Your account has been made. <br /> Please verify it by clicking the activation link that has been send to your email.';
