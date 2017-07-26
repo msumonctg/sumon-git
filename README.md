@@ -1,4 +1,4 @@
-# sumon-git
+# Login/Registration PHP
 <b>Simple login and registration package using PHP.</b><br>
 This is a simple login and ragistration package created in PHP. I have used PHP Password hashing technique which is considered most secured nowadays. And I have kept the code as simple as possible.
 
